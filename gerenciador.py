@@ -46,6 +46,7 @@ def ver_emails(emails):
         nome_email = email["email"]
         print(f"{indice}. [{status}] {nome_email}")
         return
+    
 
 def atualizar_nome_contatos(contatos, indice_contato, novo_nome_contato):
     indice_contato_ajustado = int(indice_contato) - 1
@@ -74,6 +75,7 @@ def atualizar_emails(emails, indice_email, novo_email):
         print("Índice de e-mail inválido!")
     return
 
+
 def marcar_contato(contatos, indice_contato):
     indice_contato_ajustado = int(indice_contato) - 1
     contatos[indice_contato_ajustado]["completada"] = True
@@ -90,6 +92,28 @@ def marcar_email(emails, indice_email):
     indice_email_ajustado = int(indice_email) - 1
     emails[indice_email_ajustado]["completada"] = True
     print(f"E-mail {indice_email} marcado como favorito!")
+    return
+
+
+def deletar_contato(contatos):
+    for contato in contatos:
+        if contato["completada"]:
+            contatos.remove(contato)
+    print("O contato foi deletado!") 
+    return
+
+def deletar_telefone(telefones):
+    for telefone in telefones:
+        if telefone["completada"]:
+            telefones.remove(telefone)
+    print("O telefone foi deletado!") 
+    return
+
+def deletar_email(emails):
+    for email in emails:
+        if email["completada"]:
+            emails.remove(email)
+    print("O e-mail foi deletado!") 
     return
 
 contatos = []
@@ -110,8 +134,10 @@ while True:
     if escolha == "1":
         nome_contato = input("Digite o nome do contato que deseja adicionar: ")
         adicionar_contato(contatos, nome_contato)
+
         numero_telefone = int(input("Digite o número do telefone que deseja adicionar: "))
         adicionar_telefone(telefones, numero_telefone)
+
         nome_email = input("Digite o e-mail que deseja adicionar: ")
         adicionar_email(emails, nome_email)
 
@@ -148,6 +174,16 @@ while True:
         ver_emails(emails)
         indice_email = input("Digite o número do e-mail que deseja marcar como favorito: ")
         marcar_email(emails, indice_email)
+
+    elif escolha == "5":
+        deletar_contato(contatos)
+        ver_contatos(contatos)
+
+        deletar_telefone(telefones)
+        ver_telefones(telefones)
+
+        deletar_email(emails)
+        ver_emails(emails)
 
     elif escolha == "6":
         break
