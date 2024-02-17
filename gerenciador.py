@@ -9,7 +9,6 @@ def adicionar_telefone(telefones, numero_telefone):
     telefone = {"telefone": numero_telefone, "completada": False}
 
     telefones.append(telefone)
-
     print(f"Telefone {numero_telefone} foi adicionada com sucesso!")
     return
 
@@ -75,6 +74,24 @@ def atualizar_emails(emails, indice_email, novo_email):
         print("Índice de e-mail inválido!")
     return
 
+def marcar_contato(contatos, indice_contato):
+    indice_contato_ajustado = int(indice_contato) - 1
+    contatos[indice_contato_ajustado]["completada"] = True
+    print(f"Contato {indice_contato} marcado como favorito!")
+    return
+
+def marcar_telefone(telefones, indice_telefone):
+    indice_telefone_ajustado = int(indice_telefone) - 1
+    telefones[indice_telefone_ajustado]["completada"] = True
+    print(f"Telefone {indice_contato} marcado como favorito!")
+    return
+
+def marcar_email(emails, indice_email):
+    indice_email_ajustado = int(indice_email) - 1
+    emails[indice_email_ajustado]["completada"] = True
+    print(f"E-mail {indice_email} marcado como favorito!")
+    return
+
 contatos = []
 telefones = []
 emails = []
@@ -84,7 +101,7 @@ while True:
     print("1. Adicionar contatos.")
     print("2. Ver lista de contatos cadastrados.")
     print("3. Atualizar contatos.")
-    print("4. Marcar/Desmarcar contatos.")
+    print("4. Marcar/Desmarcar contatos favoritos.")
     print("5. Deletar contato.")
     print("6. Sair.")
 
@@ -118,6 +135,19 @@ while True:
         indice_email = input("Digite o número do e-mail que deseja atualizar: ")
         novo_email = input("Digite o novo e-mail: ")
         atualizar_emails(emails, indice_email, novo_email)
+
+    elif escolha == "4":
+        ver_contatos(contatos)
+        indice_contato = input("Digite o número do contato que deseja marcar como favorito: ")
+        marcar_contato(contatos, indice_contato)
+
+        ver_telefones(telefones)
+        indice_telefone = input("Digite o número do telefone que deseja marcar como favorito: ")
+        marcar_telefone(telefones, indice_telefone)
+
+        ver_emails(emails)
+        indice_email = input("Digite o número do e-mail que deseja marcar como favorito: ")
+        marcar_email(emails, indice_email)
 
     elif escolha == "6":
         break
